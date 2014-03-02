@@ -19,11 +19,10 @@ class TweetParser
   def tweet_json
     @tweet_json ||= JSON.parse(tweet_json_string)
   rescue JSON::ParserError => e
-    puts "<<< ERROR PARSING JSON!"
     { error: e.to_json }
   end
 
   def uid
-    tweet_json['id'].match(/twitter.com,(.*)/)[1]
+    tweet_json['id'].try(:match, /twitter.com,(.*)/).try(:at, 1)
   end
 end

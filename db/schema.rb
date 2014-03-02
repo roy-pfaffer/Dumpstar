@@ -10,16 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140302014253) do
+ActiveRecord::Schema.define(version: 20140302071119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "activities", force: true do |t|
+    t.json     "body"
     t.string   "uid"
     t.string   "url"
-    t.json     "body"
     t.string   "provider"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "metrics", force: true do |t|
+    t.integer "activity_id"
+    t.string  "type"
+    t.integer "value"
+  end
+
+  create_table "program_activities", force: true do |t|
+    t.integer "program_id"
+    t.integer "activity_id"
+  end
+
+  create_table "programs", force: true do |t|
+    t.integer  "bossanova_id"
+    t.string   "keywords",     default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -8,5 +8,7 @@ task :stream do
   twitter_stream.consume { |message|
     parsed_message = TweetParser.new(message).parse
     Persistence::Activity.create(parsed_message)
+    # associate the tweet with the correct programs
+    # extract and store metrics into objects
   }
 end
