@@ -23,6 +23,6 @@ class TweetParser
   end
 
   def uid
-    tweet_json['id'].try(:match, /twitter.com,(.*)/).try(:at, 1)
+    tweet_json['id'].try(:match, /twitter.com,(.*)/).try(:[], 1)
   end
 end
