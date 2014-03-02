@@ -10,6 +10,8 @@ gem 'sinatra-activerecord'
 group :development do
   gem 'shotgun'
   gem 'tux'
+  gem 'dotenv'
+  gem 'awesome_print'
 end
 
 group :test do

@@ -19,10 +19,12 @@ GEM
     addressable (2.3.5)
     arel (4.0.2)
     atomic (1.1.15)
+    awesome_print (1.2.0)
     bond (0.4.3)
     builder (3.1.4)
     cookiejar (0.3.1)
     diff-lcs (1.2.5)
+    dotenv (0.8.0)
     em-http-request (1.1.2)
       addressable (>= 2.3.4)
       cookiejar
@@ -85,6 +87,8 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  awesome_print
+  dotenv
   gnip-stream
   pg
   rake

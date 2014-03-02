@@ -2,12 +2,7 @@ require File.join(File.dirname(__FILE__), '..', 'app.rb')
 
 require 'sinatra'
 require 'rspec'
-
-# require files to test
-model_dir = "#{File.dirname(__FILE__)}/../app/models"
-$: << model_dir
-
-require "some_class"
+Dir[File.dirname(__FILE__) + "/support/*.rb"].each {|f| require f}
 
 # setup test environment
 set :environment, :test

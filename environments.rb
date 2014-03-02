@@ -1,5 +1,6 @@
 configure :development do
-  set :database, 'postgresql:///dev.db'
+  require 'awesome_print'
+  set :database, 'postgresql:///dumpstar_db'
   set :show_exceptions, true
 end
 
