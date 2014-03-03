@@ -1,3 +1,8 @@
+configure :test do
+  set :database, 'postgresql:///dumpstar_db_test'
+  set :show_exceptions, true
+end
+
 configure :development do
   require 'awesome_print'
   set :database, 'postgresql:///dumpstar_db'
