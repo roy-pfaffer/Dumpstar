@@ -1,14 +1,16 @@
 class ActivityFilter
-  attr_reader :program, :date_range, :sort_key
+  attr_reader :program, :date_range, :sort_key, :limit
 
   def initialize(options)
     @program = options[:program]
-    @date_range = options[:date_range] || 30.days.ago
+    @date_range = (options[:date_range] && options[:date_range].to_i.days.ago) || 30.days.ago
     @sort_key = options[:sort_key]
+    @limit = options[:limit]
   end
 
   def perform
-    sort_key ? sorted_activities : scoped_activities
+    results = sort_key ? sorted_activities : scoped_activities
+    limit ? results.first(limit) : results
   end
 
   private
@@ -18,8 +20,6 @@ class ActivityFilter
   end
 
   def sorted_activities
-    @sorted_activities ||=
-      scoped_activities
-        .sort{|a,b| b.retweets_count <=> a.retweets_count}
+    @sorted_activities ||= scoped_activities.sort{|a,b| b.retweets_count <=> a.retweets_count}
   end
 end
