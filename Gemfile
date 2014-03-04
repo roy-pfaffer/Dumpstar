@@ -6,6 +6,7 @@ gem 'gnip-stream'
 gem 'pg'
 gem 'activerecord'
 gem 'sinatra-activerecord'
+gem 'superbolt'
 
 group :development do
   gem 'shotgun'

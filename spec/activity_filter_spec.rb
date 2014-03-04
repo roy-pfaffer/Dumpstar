@@ -4,17 +4,20 @@ describe ActivityFilter do
   let(:filter) { ActivityFilter.new(initialization_params) }
   let(:initialization_params) { {
     program: program,
-    date_range: "12",
+    date_range: date_range,
     sort_key: sort_key,
-    limit: limit
+    limit: limit,
+    last_id: last_id
   } }
   let(:program) {
     program = Persistence::Program.create
     program.activities << activities
     program
   }
+  let(:date_range) { 12 }
   let(:sort_key) { nil }
   let(:limit) { nil }
+  let(:last_id) { nil }
   let(:activities) {
     collection = [
       Persistence::Activity.create(created_at: 5.days.ago),
@@ -44,6 +47,17 @@ describe ActivityFilter do
       let(:limit) { 1 }
       it 'should limit the number of activities to the limit provided' do
         filter.perform.count.should == limit
+      end
+    end
+
+    context 'last_id parameter is provided' do
+      let(:last_id) { Persistence::Activity.last(2)[0].id }
+      let(:date_range) { 20 }
+
+      it 'should only send back activities greater than the one provided' do
+        results = filter.perform
+        results.count.should == 1
+        results.first.id.should == activities[2].id
       end
     end
   end

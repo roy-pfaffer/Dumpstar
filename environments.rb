@@ -1,3 +1,5 @@
+set :views, Proc.new { File.join(root, "templates") }
+
 configure :test do
   set :database, 'postgresql:///dumpstar_db_test'
   set :show_exceptions, true

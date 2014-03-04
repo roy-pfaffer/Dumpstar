@@ -17,11 +17,17 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    amq-protocol (1.9.2)
+    amqp (1.2.1)
+      amq-protocol (>= 1.9.2)
+      eventmachine
     arel (4.0.2)
     atomic (1.1.15)
     awesome_print (1.2.0)
     bond (0.4.3)
     builder (3.1.4)
+    bunny (0.9.8)
+      amq-protocol (>= 1.6.0)
     cookiejar (0.3.1)
     diff-lcs (1.2.5)
     dotenv (0.8.0)
@@ -72,6 +78,10 @@ GEM
     sinatra-activerecord (1.3.0)
       activerecord (>= 3.0)
       sinatra (~> 1.0)
+    superbolt (0.1.3)
+      activesupport
+      amqp
+      bunny (~> 0.9.0.rc1)
     thread_safe (0.2.0)
       atomic (>= 1.1.7, < 2)
     tilt (1.4.1)
@@ -97,4 +107,5 @@ DEPENDENCIES
   shotgun
   sinatra
   sinatra-activerecord
+  superbolt
   tux
