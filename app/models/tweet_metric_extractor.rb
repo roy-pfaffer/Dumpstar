@@ -7,11 +7,22 @@ class TweetMetricExtractor
 
   def extract
     puts 'extracting'
-    extract_follower_count
-    extract_retweet_count
+    extract_followers_count
+    extract_favorites_count
+    extract_retweets_count
   end
 
-  def extract_follower_count
+  def extract_followers_count
+    puts activity.id
+    followers_count = activity.body.try(:[], 'actor').try(:[], 'followersCount') || 0
+    Persistence::Metric.create(
+      type: 'followers',
+      value: followers_count,
+      activity_id: activity.id
+    )
+  end
+
+  def extract_favorites_count
     Persistence::Metric.create(
       type: 'favorites',
       value: activity.body['favoritesCount'],
@@ -19,7 +30,7 @@ class TweetMetricExtractor
     )
   end
 
-  def extract_retweet_count
+  def extract_retweets_count
     Persistence::Metric.create(
       type: 'retweets',
       value: activity.body['retweetCount'],

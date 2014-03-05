@@ -4,6 +4,11 @@ module Persistence
     has_many :programs, through: :program_activities, class_name: 'Persistence::Program'
     has_many :metrics, class_name: 'Persistence::Metric'
 
+    def followers_count
+      metric = metrics.select{|m| m.type == 'followers'}.first
+      if metric; metric.value; else; 0; end
+    end
+
     def favorites_count
       metric = metrics.select{|m| m.type == 'favorites'}.first
       if metric; metric.value; else; 0; end

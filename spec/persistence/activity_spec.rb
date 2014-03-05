@@ -5,8 +5,20 @@ describe Persistence::Activity do
   let!(:metrics) {
     activity.metrics << Persistence::Metric.create(type: 'favorites', value: 23)
     activity.metrics << Persistence::Metric.create(type: 'retweets', value: 12)
+    activity.metrics << Persistence::Metric.create(type: 'followers', value: 42)
     activity.metrics
   }
+
+  describe '#followers_count' do
+    it 'should return the number of followers the author had when the activity was posted' do
+      activity.followers_count.should == 42
+    end
+
+    it 'should return zero if the metric does not exist' do
+      activity.metrics.delete_all
+      activity.retweets_count.should == 0
+    end
+  end
 
   describe '#retweets_count' do
     it 'should return the number of retweets the activity has' do

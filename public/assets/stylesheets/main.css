@@ -2,3 +2,71 @@ body {
   font: 'bold 24px/1 'PT Sans', sans-serif';
   color: #85898b;
 }
+
+.header {
+  padding: 0 10px 0 10px;
+}
+
+/*BEGIN SETTINGS*/
+.settings .trigger {
+  display: inline-block;
+}
+
+.settings .arrows {
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.settings .controls {
+  padding: 5px;
+  background-color: #EEEEEE;
+  border: 1px solid grey;
+  display: inline-block
+}
+
+.settings .controls div {
+  display: inline-block;
+}
+
+.settings .controls .value {
+  cursor: pointer;
+}
+
+.settings .controls .value.selected {
+  text-decoration: underline;
+}
+
+/*END SETTINGS*/
+
+.master-stream {
+  width: 700px;
+}
+
+.activity-item-container {
+  padding: 10px;
+}
+
+.activity-item {
+  border: 1px solid grey;
+  visibility: hidden;
+  box-shadow: 2px 2px 5px #888888;
+}
+
+.activity-item .avatar {
+  display: inline-block;
+  padding-top: 10px;
+  width: 10%;
+  text-align: center;
+}
+
+.activity-item .body {
+  display: inline-block;
+  padding-top: 10px;
+  width: 85%;
+}
+
+/*OO styles*/
+.bolded {
+  font-weight: bold;
+}
+

@@ -6,7 +6,34 @@
     <link rel="stylesheet" type="text/css" href="/assets/stylesheets/typography.css">
   </head>
   <body>
-    <h2>Master Stream</h2>
+    <div class="header">
+      <h2>Master Stream for <%= program_name %></h2>
+      <span class="bolded">keywords: </span>
+      <% program_keywords.each do |keyword| %>
+        <span class="keyword"><%= keyword %></span>
+      <% end %>
+      <div class="settings">
+        <h4 class="trigger">Settings</h4>
+        <div class="arrows"> >> </div>
+        <div class="controls">
+          <div class="mode-setting">
+            <span class="bolded">mode</span>: <span class="value selected">live</span> <span class="value">followers</span> <span class="value">retweets</span>
+          </div>
+          <span>  |  </span>
+          <div class="color-setting">
+            <span class="bolded">color key</span>: <span class="value">followers</span> <span class="value">retweets</span> <span class="value">none</span>
+          </div>
+          <span>  |  </span>
+          <div class="date-range-setting">
+            <span class="bolded">date range</span>: <span class="value">30</span> <span class="value selected">15</span> <span class="value">1</span>
+          </div>
+          <span>  |  </span>
+          <span id="settings-submit"><a href="#">refresh</a></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- sort key, date range, limit -->
     <div class='master-stream'></div>
 
     <script type="text/javascript">

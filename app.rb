@@ -10,7 +10,8 @@ Dir[File.dirname(__FILE__) + "/config/**/*.rb"].each {|file| require file }
 Dir[File.dirname(__FILE__) + "/app/**/*.rb"].each {|file| require file }
 
 get '/programs/:program_id' do
-  erb :index, locals: { program_id: params[:program_id] }
+  program = Persistence::Program.where(bossanova_id: params[:program_id]).first
+  erb :index, locals: { program_id: program.bossanova_id, program_name: program.name, program_keywords: program.keywords }
 end
 
 get '/programs/:program_id/stream' do
