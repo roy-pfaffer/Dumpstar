@@ -53,9 +53,6 @@ $(document).ready(function() {
     });
   };
 
-  var getRetweetCount = function(activity) {
-  };
-
   // settings
   var pollingInterval;
   var submitSettings = function() {

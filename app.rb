@@ -35,6 +35,7 @@ get '/programs/:program_id/activities/:activity_id/create_action' do
     .re('action_creation')
     .send!({
       program_id: params[:program_id].to_i,
+      author: activity.body['actor']['displayName'],
       prepopulated_text: activity.body['body'],
       link_url: activity.body['gnip']['urls'][0]['expanded_url'],
       type: 'link'
