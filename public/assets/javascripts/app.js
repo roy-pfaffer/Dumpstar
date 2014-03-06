@@ -34,7 +34,7 @@ $(document).ready(function() {
         <div class="avatar"><img src="<%= activity["body"]["actor"]["image"] %>"></div>\
         <div class="body">\
           <a class="bolded" target="blank" href="<%= activity["body"]["actor"]["link"] %>"><%= activity["body"]["actor"]["displayName"] %></a> - <a target="blank" href="<%= activity["body"]["link"] %>"><%= activity["body"]["link"] %></a>\
-          <p><%= activity["body"]["body"] %><br><%= activity["body"]["retweetCount"] %> retweets, <%= activity["body"]["actor"]["followersCount"] %> followers.  <a target="blank" href="' + baseUrl + 'activities/<%= activity["id"] %>/create_action">Create Action</a></p>\
+          <p><%= activity["body"]["body"] %><br><%= activity["body"]["retweetCount"] %> retweets, <%= activity["body"]["actor"]["followersCount"] %> followers.  <a class="create-action" data-id="<%= activity["id"] %>" href="#">Create Action</a></p>\
         </div>\
       </div>\
     </div>\
@@ -49,6 +49,7 @@ $(document).ready(function() {
       $activitiesContainer.prepend(template(params));
       $activitiesContainer.find('.activity-item-container').first().hide().slideDown('slow', function(){
         $(this).find('.activity-item').css('visibility','visible').hide().fadeIn('slow');
+        $(this).find('.create-action').click(createAction);
       });
     });
   };
@@ -77,6 +78,18 @@ $(document).ready(function() {
     $el = $(e.target);
     $el.parent().find('.value').removeClass('selected');
     $el.addClass('selected');
+  };
+
+  var createAction = function(e) {
+    console.log('create action called');
+    var activityId = $(e.target).data('id');
+    if (confirm('Are you sure you want to create this action?')) {
+      $.ajax({
+        url: baseUrl + 'activities/' + activityId + '/create_action',
+        success: function() { alert("Done!") },
+        error: function() { alert("Oops, there was an error.") }
+      });
+    };
   };
 
   //events
